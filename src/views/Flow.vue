@@ -18,7 +18,7 @@ onMounted(async ()=>{
         //创建模型对象
         model = app.create_model();
         //加载模型
-        await model.load(new DefaultUrlResolver("/Snowdon Towers Sample HVAC/"));
+        await model.load(new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/"));
         //获取模型中的3d视图
         const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
         if(mv){
@@ -45,7 +45,7 @@ onBeforeUnmount(()=>{
 });
 let segment:FlowSegment;
 const flow=()=>{
-    const e = model.get_element(883);
+    const e = model.get_element(4954);
     const curve = e.location_curve;
     if(!curve){
         return;
@@ -65,7 +65,7 @@ const restart =()=>{
 }
 
 const clear =()=>{
-    const e = model.get_element(883);
+    const e = model.get_element(4954);
     view.flow_effects.set(e.model,e.id,null);
 }
 </script>

@@ -27,7 +27,7 @@ onMounted(async ()=>{
         }
 
         const model2 = app.create_model();
-        await model2.load(new DefaultUrlResolver("/Snowdon Towers Sample HVAC/"));
+        await model2.load(new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/"));
 
         const mv2 = model2.views.find(v=>v.type == ModelViewType.ThreeD);
         if(mv2){

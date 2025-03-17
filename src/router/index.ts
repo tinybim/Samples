@@ -4,47 +4,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/loadscene',
-      name: 'loadscene',
-      component: ()=>import(`../views/LoadApp.vue`),
-    },
-    {
-      path: '/loaddwg',
-      name: 'loaddwg',
-      component: ()=>import(`../views/LoadDwg.vue`),
-    },
-    {
-      path: '/loadmulti',
-      name: 'loadmulti',
-      component: ()=>import(`../views/LoadMulti.vue`),
-    },
-    {
-      path: '/label',
-      name: 'label',
-      component: ()=>import(`../views/AddLabel.vue`),
-    },
-    {
-      path: '/section',
-      name: 'section',
-      component: ()=>import(`../views/Section.vue`),
-    },
-    {
-      path: '/flow',
-      name: 'flow',
-      component: ()=>import(`../views/Flow.vue`),
-    },
-    {
-      path: '/select',
-      name: 'select',
-      component: ()=>import(`../views/Selection.vue`),
-    },
-    {
-      path: '/filter',
-      name: 'filter',
-      component: ()=>import(`../views/Filter.vue`),
-    }
+    _create_route('loadscene','LoadApp'),
+    _create_route(`loaddwg`,`LoadDwg`),
+    _create_route(`loadmulti`,`LoadMulti`),
+    _create_route(`label`,`AddLabel`),
+    _create_route(`section`,`Section`), 
+    _create_route(`flow`,`Flow`),
+    _create_route(`select`,`Selection`),
+    _create_route(`filter`,`Filter`),
+    _create_route(`material`,`Material`),
+    _create_route(`hlr`,`HLR`),
+    _create_route(`camera`,`Camera`)
   ],
 })
+
+function _create_route(name:string,component:string){
+  return {
+    path: `/${name}`,
+    name: name,
+    component: ()=>import(`../views/${component}.vue`),
+  }
+}
 
 export default router

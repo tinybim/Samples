@@ -4,7 +4,7 @@
 
 <template>
   <div style="display: grid; grid-template-columns: auto 1fr;height: 100vh;">
-    <div style="border-right:  1px solid lightgray;padding: 10px;line-height: 1.5;">
+    <div style="border-right:  1px solid lightgray;padding: 10px;line-height: 1.5; height: 100%;overflow: auto;">
       <div>
         <RouterLink to="/loadscene">加载场景</RouterLink>
       </div>
@@ -25,6 +25,15 @@
       </div>
       <div>
         <RouterLink to="/select">选择</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/filter">过滤</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/material">修改材质</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/hlr">隐藏线</RouterLink>
       </div>
     </div>
     <div>

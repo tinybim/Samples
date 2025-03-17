@@ -18,7 +18,7 @@ onMounted(async ()=>{
         //创建模型对象
         model = app.create_model();
         //加载模型
-        await model.load(new DefaultUrlResolver("/Snowdon Towers Sample HVAC/"));
+        await model.load(new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/"));
         //获取模型中的3d视图
         const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
         if(mv){
@@ -38,7 +38,7 @@ onBeforeUnmount(()=>{
     app?.dispose();
 });
 const select=()=>{
-    const e = model.get_element(883);
+    const e = model.get_element(4954);
     if(e){
         view.selection.select(model,new Uint32Array([e.id]));
     }

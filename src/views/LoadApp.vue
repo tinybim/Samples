@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from 'tinybim';
+import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from 'tinybim';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -30,8 +30,8 @@ onMounted(async ()=>{
         const menu = new ContextMenu(view);
         DefaultContextMenuItems.forEach(itm=>{
             menu.add_item(itm);
-        });
-        
+        });        
+        //view.render_mode = RenderMode.hlr;
     }
 });
 onBeforeUnmount(()=>{

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Color, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, TinyApp, type IModel, type UIView } from 'tinybim';
+import { CameraType, Color, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from 'tinybim';
 import { onMounted, ref } from 'vue';
 
 
@@ -29,19 +29,27 @@ onMounted(async ()=>{
             view.attach_view(mv);
             //激活窗口（为激活的视图，不会更新显示模型变化）
             view.active();
+            view.selection.selection_mode = SelectionMode.element;
+            //view.camera_type = CameraType.Perspective;
+            view.selection.add_selection_action(s=>{
+                console.log(s);
+            })
+            //view.render_mode = RenderMode.texture;
+            //view.light.ambient = new Color([10,10,10]);
         }        
     }
 });
 
 const set_material =()=>{
-    const mt = model.create_material("test",new Color([255,0,0]),0.5,0.5,MaterialType.General);
-    const e = model.get_element(10);
+    const mt = model.create_material("test",new Color([50,200,100]),0.5,0,MaterialType.General);
+    const e = model.get_element(461);
     model.set_material([e.id],mt,MaterialScope.element);
 }
+
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
     <div style="position:fixed; top: 20px; left: 250px;">
-        <button @click="set_material">设置</button>
+        <button @click="set_material">设置</button>       
     </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, Plane, TinyApp, type UIView } from 'tinybim';
+import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, Plane, SelectionMode, TinyApp, type UIView } from 'tinybim';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -25,6 +25,13 @@ onMounted(async ()=>{
             view.attach_view(mv);
             //激活窗口（为激活的视图，不会更新显示模型变化）
             view.active();
+
+            //设置选择模式为元素选择
+            view.selection.selection_mode = SelectionMode.element;
+            //添加选择事件
+            view.selection.add_selection_action(r=>{
+                console.log(r);
+            });
         }
         //加载右键菜单，(可以自行创建ContextMenuItem，并加载)
         const menu = new ContextMenu(view);
