@@ -33,7 +33,10 @@
         <RouterLink to="/material">修改材质</RouterLink>
       </div>
       <div>
-        <RouterLink to="/hlr">隐藏线</RouterLink>
+        <RouterLink to="/hlr">渲染模式</RouterLink>
+      </div>
+      <div>
+        <RouterLink to="/light">光照设置</RouterLink>
       </div>
     </div>
     <div>

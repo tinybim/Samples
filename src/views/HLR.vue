@@ -43,11 +43,15 @@ const set_hlr =()=>{
 const set_color =()=>{
     view.render_mode = RenderMode.color;
 }
+const set_tex =()=>{
+    view.render_mode = RenderMode.texture;
+}
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
     <div style="position:fixed; top: 20px; left: 250px;">
-        <button @click="set_hlr">设置</button>       
-        <button @click="set_color">恢复</button>       
+        <button @click="set_hlr">隐藏线</button>       
+        <button @click="set_color">颜色</button>  
+        <button @click="set_tex">纹理</button>       
     </div>
 </template>

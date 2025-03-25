@@ -14,7 +14,8 @@ const router = createRouter({
     _create_route(`filter`,`Filter`),
     _create_route(`material`,`Material`),
     _create_route(`hlr`,`HLR`),
-    _create_route(`camera`,`Camera`)
+    _create_route(`camera`,`Camera`),
+    _create_route(`light`,`LightSetting`)
   ],
 })
 
