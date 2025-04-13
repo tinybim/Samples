@@ -55,7 +55,9 @@ const flow=()=>{
     segment = new FlowSegment(start,end,1000,2000,0,500,new Color([255,0,0]));
 
     view.flow_effects.set(model,e.id,segment);
-    view.zoom_elements([e]);    
+    view.zoom_elements(new Map([
+        [model,[e.id]]
+    ]));    
 }
 const pause = ()=>{
     segment.pause();

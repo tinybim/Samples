@@ -37,18 +37,25 @@ onMounted(async ()=>{
 onBeforeUnmount(()=>{
     app?.dispose();
 });
-const select=()=>{
+const select=()=>{    
     const e = model.get_element(4954);
     if(e){
         view.selection.select(model,new Uint32Array([e.id]));
     }
 }
-
+const select_all=()=>{
+    const elements = model.elements;
+    view.selection.select(model,elements);
+}
+const clear=()=>{
+    view.selection.clear();
+}
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
     <div style="position:fixed; top: 20px; left: 250px;">
         <button @click="select">高亮</button>
-        <button @click="select">取消高亮</button>
+        <button @click="select_all">全选</button>
+        <button @click="clear">取消高亮</button>
     </div>
 </template>

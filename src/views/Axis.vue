@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, Plane, TinyApp, type UIView } from 'tinybim';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import type { IAxis } from '@/tiny';
+import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from 'tinybim';
+import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
 let view:UIView;
-const dom = ref<HTMLDivElement>();
+let axis:IAxis;
+const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         //初始化
@@ -20,27 +22,26 @@ onMounted(async ()=>{
         await model.load(new DefaultUrlResolver("/rac_basic_sample_project/"));
         //获取模型中的3d视图
         const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
-        if(!mv){
-            return;
+        if(mv){
+            //将视图加载到窗口中（可以加载多个视图）
+            view.attach_view(mv);
+            //激活窗口（为激活的视图，不会更新显示模型变化）
+            view.active();
+            axis = view.axis;
+            axis.active();
+            axis.set_move_callback(a=>{
+                console.log(a);
+            })
+            axis.set_rotate_callback(a=>{
+                console.log(a);
+            })
         }
-        //将视图加载到窗口中（可以加载多个视图）
-        view.attach_view(mv);
-        //激活窗口（为激活的视图，不会更新显示模型变化）
-        view.active();
-
-        const dwg = model.views.find(v=>v.type == ModelViewType.Floor);
-        if(dwg){
-            await view.attach_view(dwg);
-            view.section.set_plane(new Plane(dwg.origin,dwg.normal));
-        }
-
-
         //加载右键菜单，(可以自行创建ContextMenuItem，并加载)
         const menu = new ContextMenu(view);
         DefaultContextMenuItems.forEach(itm=>{
             menu.add_item(itm);
-        });
-        
+        });        
+        //view.render_mode = RenderMode.hlr;
     }
 });
 onBeforeUnmount(()=>{
