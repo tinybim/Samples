@@ -13,7 +13,7 @@ onMounted(async ()=>{
 
         //获取默认窗口
         view = app.default_view;
-        //激活窗口（为激活的视图，不会更新显示模型变化）
+        //激活窗口（未激活的视图，不会更新显示模型变化）
         view.active();
         //创建模型对象
         const model1 = app.create_model();

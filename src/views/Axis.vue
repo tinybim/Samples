@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { IAxis } from '@/tiny';
-import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from 'tinybim';
+import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type IAxis, type UIView } from 'tinybim';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -25,7 +24,7 @@ onMounted(async ()=>{
         if(mv){
             //将视图加载到窗口中（可以加载多个视图）
             view.attach_view(mv);
-            //激活窗口（为激活的视图，不会更新显示模型变化）
+            //激活窗口（未激活的视图，不会更新显示模型变化）
             view.active();
             axis = view.axis;
             axis.active();

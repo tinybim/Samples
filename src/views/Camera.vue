@@ -23,7 +23,7 @@ onMounted(async ()=>{
         if(mv){
             //将视图加载到窗口中（可以加载多个视图）
             view.attach_view(mv);
-            //激活窗口（为激活的视图，不会更新显示模型变化）
+            //激活窗口（未激活的视图，不会更新显示模型变化）
             view.active();
         }
         //加载右键菜单，(可以自行创建ContextMenuItem，并加载)
