@@ -52,7 +52,7 @@ const storye_filter=()=>{
     view.isolate(map);
 }
 const category_filter = ()=>{
-    const category = model.categories[0];
+    const category = model.categories.find(c=>c.name=="墙");
     if(!category){
         return;
     }

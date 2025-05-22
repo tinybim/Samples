@@ -43,7 +43,7 @@ onMounted(async ()=>{
 const set_material =()=>{
     const mt = model.create_material("test",new Color([50,200,100]),1,0,MaterialType.General);
     const e = model.get_element(461);
-    model.set_material([e.id],mt,MaterialScope.element);
+    model.set_material([461],mt,MaterialScope.element);
 }
 
 </script>

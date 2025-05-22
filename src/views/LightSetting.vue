@@ -28,7 +28,6 @@ onMounted(async ()=>{
         view.attach_view(mv);
         //激活窗口（为激活的视图，不会更新显示模型变化）
         view.active();
-        view.shadow = true;
         const light = view.light;
         if(ambient_color.value){
             const input = ambient_color.value;
