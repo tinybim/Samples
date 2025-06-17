@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CameraType, Color, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from 'tinybim';
+import { CameraType, Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from 'tinybim';
 import { onMounted, ref } from 'vue';
 
 
@@ -36,14 +36,19 @@ onMounted(async ()=>{
             })
             //view.render_mode = RenderMode.texture;
             //view.light.ambient = new Color([10,10,10]);
+            const contex_menu =  new ContextMenu(view);
+            const items = DefaultContextMenuItems;
+            items.forEach(it=>{
+                contex_menu.add_item(it);
+            });
         }        
     }
 });
 
 const set_material =()=>{
-    const mt = model.create_material("test",new Color([50,200,100]),1,0,MaterialType.General);
+    const mt = model.create_material("test",new Color([100,100,100]),1,0,MaterialType.Emissive_Bloom);
     const e = model.get_element(461);
-    model.set_material([461],mt,MaterialScope.element);
+    model.set_material([313],mt,MaterialScope.element);
 }
 
 </script>
