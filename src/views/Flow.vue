@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, FlowSegment, ModelViewType, SelectionMode, TinyApp, type IModel, type UIView } from 'tinybim';
+import { Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, FlowSegment, ModelViewType, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;

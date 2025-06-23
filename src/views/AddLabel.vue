@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from 'tinybim';
+import { DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;

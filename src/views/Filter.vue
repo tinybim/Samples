@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 
-import {  Box, CategoryFilter, DefaultUrlResolver, FilteredElementCollector, ModelViewType, ParameterFilter, ParameterValueFilter, RayFilter, SelectionMode, StoreyFilter, TinyApp, TypeFilter, type IModel, type UIView } from 'tinybim';
+import {  BBox, CategoryFilter, DefaultUrlResolver, FilteredElementCollector, ModelViewType, ParameterFilter, ParameterValueFilter, RayFilter, SelectionMode, StoreyFilter, TinyApp, TypeFilter, type IModel, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;

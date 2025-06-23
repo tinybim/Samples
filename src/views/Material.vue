@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CameraType, Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from 'tinybim';
+import { Background, BackgroundType, CameraType, Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
 import { onMounted, ref } from 'vue';
 
 
@@ -41,7 +41,17 @@ onMounted(async ()=>{
             items.forEach(it=>{
                 contex_menu.add_item(it);
             });
-        }        
+        }  
+        setTimeout(() => {
+            const bk = new Background();
+            bk.type = BackgroundType.color;
+            bk.color = new Color([0,0,0]);
+            view.background = bk;
+            
+            view.light.ambient = new Color([0,0,0]);
+            view.light.sunlight.color =new Color([0,0,0]);
+        }, 10);
+
     }
 });
 

@@ -41,6 +41,9 @@
       <div>
         <RouterLink to="/light">光照设置</RouterLink>
       </div>
+      <div>
+        <RouterLink to="/camera">camera</RouterLink>
+      </div>
     </div>
     <div>
       <RouterView />

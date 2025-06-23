@@ -16,6 +16,15 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
+1. 修改dev.ts
+dev.ts 
+```typescript
+export * from "tinybim"
+
+//debug
+//export * from "./lib"
+```
+2. 安装npm包
 ```sh
 npm install
 ```

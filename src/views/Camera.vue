@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Box, CameraInfo, CameraType, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from 'tinybim';
+import {  BBox, CameraInfo, CameraType, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -40,7 +40,7 @@ onBeforeUnmount(()=>{
 });
 let rotation_id=0;
 const rotate_x =()=>{
-    const center = Box.get_center(view.box);
+    const center = BBox.get_center(view.box);
     rotation_id =window.setInterval(()=>{
         
         view.camera.rotate(0,1/180,center);
