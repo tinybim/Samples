@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     _create_route('loadscene','LoadApp'),
     _create_route(`loaddwg`,`LoadDwg`),
@@ -16,7 +17,8 @@ const router = createRouter({
     _create_route(`hlr`,`HLR`),
     _create_route(`camera`,`Camera`),
     _create_route(`light`,`LightSetting`),
-    _create_route(`axis`,`Axis`)
+    _create_route(`axis`,`Axis`),
+    _create_route(`fire`,`Fire`)
   ],
 })
 

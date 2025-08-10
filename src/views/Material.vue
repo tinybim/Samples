@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Background, BackgroundType, CameraType, Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
-import { onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 
 const dom=ref<HTMLDivElement>();
@@ -26,13 +26,13 @@ onMounted(async ()=>{
         const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
         if(mv){
             //将视图加载到窗口中（可以加载多个视图）
-            view.attach_view(mv);
+            await view.attach_view(mv);
             //激活窗口（为激活的视图，不会更新显示模型变化）
             view.active();
             view.selection.selection_mode = SelectionMode.element;
             //view.camera_type = CameraType.Perspective;
             view.selection.add_selection_action(s=>{
-                console.log(s);
+                console.log(s);                   
             })
             //view.render_mode = RenderMode.texture;
             //view.light.ambient = new Color([10,10,10]);
@@ -48,23 +48,25 @@ onMounted(async ()=>{
             bk.color = new Color([0,0,0]);
             view.background = bk;
             
-            view.light.ambient = new Color([0,0,0]);
+            view.light.ambient = new Color([50,50,50]);
             view.light.sunlight.color =new Color([0,0,0]);
         }, 10);
 
     }
 });
-
+onBeforeUnmount(()=>{
+    app?.dispose();
+});
 const set_material =()=>{
-    const mt = model.create_material("test",new Color([100,100,100]),1,0,MaterialType.Emissive_Bloom);
-    const e = model.get_element(461);
-    model.set_material([313],mt,MaterialScope.element);
+    const mt = model.create_material("test",new Color([255,255,255,30]),0.5,0.5,MaterialType.Emissive_Bloom);
+    console.log("mt",mt);
+    model.set_material([113,114,115,116,117,118,119,120,71,130,131,132],mt,MaterialScope.element);
 }
 
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
-    <div style="position:fixed; top: 20px; left: 250px;">
+    <div style="position:fixed; top: 100px; left: 250px;">
         <button @click="set_material">设置</button>       
     </div>
 </template>

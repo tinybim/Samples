@@ -53,7 +53,7 @@ const clear=()=>{
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
-    <div style="position:fixed; top: 20px; left: 250px;">
+    <div style="position:fixed; top: 100px; left: 250px;">
         <button @click="select">高亮</button>
         <button @click="select_all">全选</button>
         <button @click="clear">取消高亮</button>

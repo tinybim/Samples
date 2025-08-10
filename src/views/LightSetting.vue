@@ -93,7 +93,7 @@ const sunlight_phi = ref<HTMLInputElement>();
     <div ref="dom" style="width: 100%;height: 100%;">
 
     </div>
-    <div style="position:fixed; top: 20px; left: 150px;display: grid; grid-template-columns: auto auto;background: white;">
+    <div style="position:fixed; top: 100px; left: 150px;display: grid; grid-template-columns: auto auto;background: white;">
         <div>环境光:</div>
         <div style="display: grid; grid-template-columns: auto auto;">
             <div>颜色</div>

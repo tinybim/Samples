@@ -73,7 +73,7 @@ const clear =()=>{
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
-    <div style="position:fixed; top: 20px; left: 250px;">
+    <div style="position:fixed; top: 100px; left: 250px;">
         <button @click="flow">流动</button>
         <button @click="pause">暂停</button>
         <button @click="restart">重启</button>

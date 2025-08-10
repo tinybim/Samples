@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from '../dev';
+import type { ISelected } from '@/lib';
+import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -28,8 +29,19 @@ onMounted(async ()=>{
         //激活窗口（未激活的视图，不会更新显示模型变化）
         view.active();       
         const label = document.createElement("div");
-        label.innerText ="test label";
-        view.label_manager.create("test",label,model.box.slice(3,6));
+        label.innerText ="car";
+        label.style.backgroundColor ="#FFFFFF";
+        // label.translate =
+        view.label_manager.create("test",label,new Float32Array([3092.981689453125,16468.2578125,4502.5]));
+
+        view.selection.add_selection_action((r:ISelected)=>{
+            console.log(r);
+        })
+
+        const menu = new ContextMenu(view);
+        DefaultContextMenuItems.forEach(itm=>{
+            menu.add_item(itm);
+        });  
     }
 });
 onBeforeUnmount(()=>{

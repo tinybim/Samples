@@ -131,7 +131,7 @@ const parameter_value_filter = async ()=>{
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
-    <div style="position:fixed; top: 20px; left: 250px;">
+    <div style="position:fixed; top: 100px; left: 250px;">
         <button @click="storye_filter">楼层</button>
         <button @click="category_filter">类别</button>
         <button @click="type_filter">类型</button>

@@ -73,7 +73,7 @@ const close_section =()=>{
 <template>
     <div style="width: 100%;height: 100%;">
         <div ref="dom" style="width: 100%;height: 100%;"></div>
-        <div style="position:fixed; top: 20px; left: 250px;">
+        <div style="position:fixed; top: 100px; left: 250px;">
             <button @click="box_section">范围框剖切</button>
             <button @click="plan_section">面剖切</button>
             <button @click="active_section">激活剖切</button>

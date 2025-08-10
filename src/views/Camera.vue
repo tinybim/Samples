@@ -67,7 +67,7 @@ const switch_camera=()=>{
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
-    <div style="position:fixed; top: 20px; left: 250px;">
+    <div style="position:fixed; top: 100px; left: 250px;">
         <button @click="rotate_x">绕z轴旋转</button>       
         <button @click="cancel_rotation">取消旋转</button> 
         <button @click="set_camera_info">记录相机</button>     

@@ -49,7 +49,7 @@ const set_tex =()=>{
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
-    <div style="position:fixed; top: 20px; left: 250px;">
+    <div style="position:fixed; top: 100px; left: 250px;">
         <button @click="set_hlr">隐藏线</button>       
         <button @click="set_color">颜色</button>  
         <button @click="set_tex">纹理</button>       
