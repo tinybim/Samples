@@ -11,10 +11,11 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^4.2.6",
     "samples": "file:",
     "sandpack-vue3": "^3.1.12",
-    "tinybim": "^0.0.37",
+    "tinybim": "^0.0.38",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

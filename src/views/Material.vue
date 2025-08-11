@@ -60,7 +60,8 @@ onBeforeUnmount(()=>{
 const set_material =()=>{
     const mt = model.create_material("test",new Color([255,255,255,30]),0.5,0.5,MaterialType.Emissive_Bloom);
     console.log("mt",mt);
-    model.set_material([113,114,115,116,117,118,119,120,71,130,131,132],mt,MaterialScope.element);
+    // model.set_material([113,114,115,116,117,118,119,120,71,130,131,132],mt,MaterialScope.element);
+    model.set_material([212,211,105],mt,MaterialScope.element);
 }
 
 </script>

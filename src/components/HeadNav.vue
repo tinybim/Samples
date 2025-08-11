@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-
+import {GithubOutlined} from '@ant-design/icons-vue'
 
 const home_url =import.meta.env.VITE_HOME_URL;
 const samples_url=import.meta.env.VITE_SAMPLES_URL;
@@ -30,6 +30,10 @@ const handleSelect = (e: any) => {
             location.href = console_url;
             break;
         }
+        case '5': {
+            window.open("https://github.com/tinybim/Samples","_blank")
+            break;
+        }
     }
 }
 </script>
@@ -43,7 +47,9 @@ const handleSelect = (e: any) => {
             <a-menu-item key="2">示例文件</a-menu-item>
             <a-menu-item key="3">功能demo</a-menu-item>
             <a-menu-item key="4">控制台</a-menu-item>
-            <!-- <a-menu-item key="5" style="margin-left: auto;">{{ login_txt }}</a-menu-item> -->
+            <a-menu-item key="5" style="margin-left: auto;">
+                <GithubOutlined style="font-size: x-large;"/>
+            </a-menu-item>
         </a-menu>
     </div>
 </template>
