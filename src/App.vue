@@ -51,6 +51,9 @@ import HeadNav from './components/HeadNav.vue';
         <div>
           <RouterLink to="/fire">fire</RouterLink>
         </div>
+        <div>
+          <RouterLink to="/pbr">pbr</RouterLink>
+        </div>
       </div>
       <div>
         <RouterView />
