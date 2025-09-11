@@ -54,7 +54,7 @@ async function add_fire() {
     }
     if (view) {
         const p = new Float32Array([8913, 18590, 3000]);
-        fire = await view.add_fire(new FireCreateInfo(p, 1000, 40, 100000, 2, 5, 10, 1000, 1000))
+        fire = await view.add_fire(new FireCreateInfo(p, 1000, 400, 1000, 2, 5, 10, 3000, 1000))
     }
 }
 
