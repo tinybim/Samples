@@ -32,7 +32,7 @@ onMounted(async ()=>{
             menu.add_item(itm);
         });        
         //view.render_mode = RenderMode.hlr;
-            window.setTimeout(()=>{
+        window.setTimeout(()=>{
             const bk =new Background();
             bk.type = BackgroundType.skybox;
             //bk.image ='/view/tk3.webp';
@@ -45,15 +45,44 @@ onMounted(async ()=>{
                 `/sky2/nz.webp`
             ]
             view.background = bk;
-            view.set_env(bk.sky_box);
-    },1000);
+            // view.set_env(bk.sky_box);
+        },1000);
     }
 });
 onBeforeUnmount(()=>{
     app?.dispose();
 });
-
+function set_pbr(){
+    view.render_mode = RenderMode.texture;
+    const envs=[
+        `/sky2/px.webp`,
+        `/sky2/nx.webp`,
+        `/sky2/py.webp`,
+        `/sky2/ny.webp`,
+        `/sky2/pz.webp`,
+        `/sky2/nz.webp`
+    ]
+    view.set_env(envs);
+}
+function set_hlr(){
+    view.render_mode = RenderMode.hlr;
+    view.set_env(null);
+}
+function set_tex(){
+    view.render_mode = RenderMode.texture;
+    view.set_env(null);
+}
+function set_color(){
+    view.render_mode = RenderMode.color;
+    view.set_env(null);
+}
 </script>
 <template>
     <div ref="dom" style="width: 100%;height: 100%;"></div>
+        <div style="position:fixed; top: 100px; left: 250px;">
+        <button @click="set_pbr">pbr</button>
+        <button @click="set_hlr">隐藏线</button>
+        <button @click="set_tex">纹理</button>
+        <button @click="set_color">颜色</button>
+    </div>
 </template>
