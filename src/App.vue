@@ -54,6 +54,9 @@ import HeadNav from './components/HeadNav.vue';
         <div>
           <RouterLink to="/pbr">pbr</RouterLink>
         </div>
+          <div>
+          <RouterLink to="/dispose">销毁场景</RouterLink>
+        </div>
       </div>
       <div>
         <RouterView />
