@@ -9,6 +9,7 @@ onMounted(async ()=>{
     if(!app){
         //初始化
         app = new TinyApp({recordable:true});
+        console.log("version",app.version);
         const div = dom.value as HTMLDivElement;
         await app.init(div);
 
