@@ -46,6 +46,7 @@ onMounted(async ()=>{
             ]
             view.background = bk;
             // view.set_env(bk.sky_box);
+            set_pbr();
         },1000);
     }
 });

@@ -9,7 +9,8 @@
     }
   ],
   "compilerOptions": {
-    "types": ["sandpack-vue3/global"]
+    "types": ["sandpack-vue3/global"],
+    
   }
 
 }

@@ -41,7 +41,9 @@ onMounted(async ()=>{
         //view.render_mode = RenderMode.hlr;
         view.selection.add_selection_action(r=>{
             console.log(r);
-        })
+        });
+
+        window.setTimeout(add_fire,1000);
     }
 });
 onBeforeUnmount(()=>{

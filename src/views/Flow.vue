@@ -38,6 +38,9 @@ onMounted(async ()=>{
             menu.add_item(itm);
         });
         
+        setTimeout(() => {
+            flow();
+        }, 1000);
     }
 });
 onBeforeUnmount(()=>{

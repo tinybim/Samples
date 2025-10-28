@@ -39,6 +39,7 @@ onMounted(async ()=>{
         DefaultContextMenuItems.forEach(itm=>{
             menu.add_item(itm);
         });  
+        window.setTimeout(add_label,3000);
     }
 });
 onBeforeUnmount(()=>{

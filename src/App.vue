@@ -13,6 +13,9 @@ import HeadNav from './components/HeadNav.vue';
           <RouterLink to="/loadscene">加载场景</RouterLink>
         </div>
         <div>
+          <RouterLink to="/gis">gis图层</RouterLink>
+        </div>
+        <div>
           <RouterLink to="/loaddwg">加载dwg</RouterLink>
         </div>
         <div>
