@@ -82,7 +82,7 @@ const type_filter = ()=>{
 const ray_filter = ()=>{
     const box = view.box;
     const center = new Float32Array([2635,-1715,9000])
-    const ray =new RayFilter(center,new Float32Array([0,0,-1]),[model]);
+    const ray =new RayFilter(center,new Float32Array([0,0,-1]),[model],view);
     ray.pass();
     const r = ray.get_results();
     const map = new Map<IModel,number[]>();
