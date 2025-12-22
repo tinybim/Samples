@@ -21,8 +21,8 @@ const router = createRouter({
     _create_route(`fire`,`Fire`),
     _create_route('pbr',"Pbr"),
     _create_route('dispose',"Dispose"),
-    _create_route('gis',"GIS")
-
+    _create_route('gis',"GIS"),
+    _create_route('motion',`Motion`)
   ],
 })
 

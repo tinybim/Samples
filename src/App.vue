@@ -25,7 +25,10 @@ import HeadNav from './components/HeadNav.vue';
           <RouterLink to="/label">标签</RouterLink>
         </div>
         <div>
-          <RouterLink to="/axis">axis</RouterLink>
+          <RouterLink to="/axis">位置编辑</RouterLink>
+        </div>
+        <div>
+          <RouterLink to="/motion">动画</RouterLink>
         </div>
         <div>
           <RouterLink to="/section">剖切</RouterLink>
@@ -49,10 +52,10 @@ import HeadNav from './components/HeadNav.vue';
           <RouterLink to="/light">光照设置</RouterLink>
         </div>
         <div>
-          <RouterLink to="/camera">camera</RouterLink>
+          <RouterLink to="/camera">相机设置</RouterLink>
         </div>
         <div>
-          <RouterLink to="/fire">fire</RouterLink>
+          <RouterLink to="/fire">火焰</RouterLink>
         </div>
         <div>
           <RouterLink to="/pbr">pbr</RouterLink>

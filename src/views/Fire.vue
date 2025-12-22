@@ -32,12 +32,12 @@ onMounted(async ()=>{
         DefaultContextMenuItems.forEach(itm=>{
             menu.add_item(itm);
         });  
-        const bk =new Background();
-        bk.type = BackgroundType.color;
-        bk.color = new Color([20,20,20]);  
-        view.background = bk;
-        view.light.ambient = new Color([20,20,20]);      
-        view.light.sunlight.color = new Color([20,20,20])
+        // const bk =new Background();
+        // bk.type = BackgroundType.color;
+        // bk.color = new Color([20,20,20]);  
+        // view.background = bk;
+        // view.light.ambient = new Color([20,20,20]);      
+        // view.light.sunlight.color = new Color([20,20,20])
         //view.render_mode = RenderMode.hlr;
         view.selection.add_selection_action(r=>{
             console.log(r);

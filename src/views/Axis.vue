@@ -26,14 +26,15 @@ onMounted(async ()=>{
             view.attach_view(mv);
             //激活窗口（未激活的视图，不会更新显示模型变化）
             view.active();
+            const dwg = model.views.find(v=>v.type == ModelViewType.Floor);
+            if(dwg){
+                await view.attach_view(dwg);                
+            }
+
             axis = view.axis;
-            axis.active();
-            axis.set_move_callback(a=>{
-                console.log(a);
-            })
-            axis.set_rotate_callback(a=>{
-                console.log(a);
-            })
+            axis.active(dwg);
+            axis.set_position(dwg.origin);
+
         }
         //加载右键菜单，(可以自行创建ContextMenuItem，并加载)
         const menu = new ContextMenu(view);
