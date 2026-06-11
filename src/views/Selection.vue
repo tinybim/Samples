@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { load_tiny_app } from '@/utils/Loader';
 import {  DefaultUrlResolver, ModelViewType, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
@@ -8,30 +9,10 @@ let model:IModel;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
-        //初始化
-        app = new TinyApp({recordable:true});
         const div = dom.value as HTMLDivElement;
-        await app.init(div);
-
-        //获取默认窗口
+        app = await load_tiny_app([new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")],div);
         view = app.default_view;
-        //创建模型对象
-        model = app.create_model();
-        //加载模型
-        await model.load(new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/"));
-        //获取模型中的3d视图
-        const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
-        if(mv){
-            //将视图加载到窗口中（可以加载多个视图）
-            view.attach_view(mv);
-            //激活窗口（为激活的视图，不会更新显示模型变化）
-            view.active();
-            view.selection.selection_mode = SelectionMode.element;
-            view.selection.add_selection_action((r)=>{
-                console.log(r);
-            });
-            
-        }        
+        model = app.create_model();      
     }
 });
 onBeforeUnmount(()=>{

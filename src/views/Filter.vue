@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 
+import { load_tiny_app } from '@/utils/Loader';
 import {  BBox, CategoryFilter, DefaultUrlResolver, FilteredElementCollector, ModelViewType, ParameterFilter, ParameterValueFilter, RayFilter, SelectionMode, StoreyFilter, TinyApp, TypeFilter, type IModel, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
@@ -9,29 +10,11 @@ let model:IModel;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
-        //初始化
-        app = new TinyApp({recordable:true});
+        //初始化        
         const div = dom.value as HTMLDivElement;
-        await app.init(div);
-
-        //获取默认窗口
+        app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div); 
         view = app.default_view;
-        //创建模型对象
-        model = app.create_model();
-        //加载模型
-        await model.load(new DefaultUrlResolver("/rac_basic_sample_project/"));
-        //获取模型中的3d视图
-        const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
-        if(mv){
-            //将视图加载到窗口中（可以加载多个视图）
-            view.attach_view(mv);
-            //激活窗口（为激活的视图，不会更新显示模型变化）
-            view.active();
-            view.selection.selection_mode = SelectionMode.point;
-            view.selection.add_selection_action((r)=>{
-                console.log(r);
-            });            
-        }
+        model = app.get_models()[0];
     }
 });
 onBeforeUnmount(()=>{

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+import { load_tiny_app } from '@/utils/Loader';
 import { Color, DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
@@ -9,25 +10,13 @@ const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         //初始化
-        app = new TinyApp({recordable:true});
+        
         const div = dom.value as HTMLDivElement;
-        await app.init(div);
+        app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
-        //获取默认窗口
         view = app.default_view;
-        //创建模型对象
-        let model = app.create_model();
-        //加载模型
-        await model.load(new DefaultUrlResolver("/rac_basic_sample_project/"));
-        //获取模型中的3d视图
-        const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
-        if(!mv){
-            return
-        } 
-        //将视图加载到窗口中（可以加载多个视图）
-        view.attach_view(mv);
-        //激活窗口（为激活的视图，不会更新显示模型变化）
-        view.active();
+ 
+
         const light = view.light;
         if(ambient_color.value){
             const input = ambient_color.value;
@@ -39,9 +28,9 @@ onMounted(async ()=>{
 
         if(ambient_rd.value){
             const input = ambient_rd.value;
-            input.value = `${light.ambient_radiance}`;
+            input.value = `${light.ambient_intensity}`;
             input.addEventListener("change",()=>{
-                light.ambient_radiance = parseFloat(input.value);
+                light.ambient_intensity = parseFloat(input.value);
             })
         }
 
@@ -55,9 +44,9 @@ onMounted(async ()=>{
 
         if(sunlight_rd.value){
             const input = sunlight_rd.value;
-            input.value = `${light.sunlight.radiance}`;
+            input.value = `${light.sunlight.intensity}`;
             input.addEventListener("change",()=>{
-                light.sunlight.radiance = parseFloat(input.value);
+                light.sunlight.intensity = parseFloat(input.value);
             })
         }
 

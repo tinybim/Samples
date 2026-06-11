@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Background, BackgroundType, CameraType, Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
+import { load_tiny_app } from '@/utils/Loader';
+import { Background, BackgroundType, Color, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 
@@ -10,38 +11,11 @@ let view:UIView;
 let model:IModel;
 
 onMounted(async ()=>{
-    if(!app){
-        //初始化
-        app = new TinyApp({recordable:true});
+    if(!app){        
         const div = dom.value as HTMLDivElement;
-        await app.init(div);
-
-        //获取默认窗口
+        app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
         view = app.default_view;
-        //创建模型对象
-        model = app.create_model();
-        //加载模型
-        await model.load(new DefaultUrlResolver("/rac_basic_sample_project/"));
-        //获取模型中的3d视图
-        const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
-        if(mv){
-            //将视图加载到窗口中（可以加载多个视图）
-            await view.attach_view(mv);
-            //激活窗口（为激活的视图，不会更新显示模型变化）
-            view.active();
-            view.selection.selection_mode = SelectionMode.element;
-            //view.camera_type = CameraType.Perspective;
-            view.selection.add_selection_action(s=>{
-                console.log(s);                   
-            })
-            //view.render_mode = RenderMode.texture;
-            //view.light.ambient = new Color([10,10,10]);
-            const contex_menu =  new ContextMenu(view);
-            const items = DefaultContextMenuItems;
-            items.forEach(it=>{
-                contex_menu.add_item(it);
-            });
-        }  
+        model = app.get_models()[0]; 
         setTimeout(() => {
             const bk = new Background();
             bk.type = BackgroundType.color;

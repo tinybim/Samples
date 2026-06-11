@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Background, BackgroundType, Color, ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, FireCreateInfo, ModelViewType, RenderMode, SelectionMode, TinyApp, type IFire, type UIView } from '../dev';
+import { load_tiny_app } from '@/utils/Loader';
+import { Background, BackgroundType, Color,   DefaultUrlResolver, FireCreateInfo, ModelViewType, RenderMode, SelectionMode, TinyApp, type IFire, type UIView } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -9,39 +10,12 @@ let fire:IFire;
 onMounted(async ()=>{
     if(!app){
         //初始化
-        app = new TinyApp({recordable:true});
-        const div = dom.value as HTMLDivElement;
-        await app.init(div);
 
-        //获取默认窗口
+        const div = dom.value as HTMLDivElement;
+        app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
+
         view = app.default_view;
-        //创建模型对象
-        let model = app.create_model();
-        //加载模型
-        await model.load(new DefaultUrlResolver("/rac_basic_sample_project/"));
-        //获取模型中的3d视图
-        const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
-        if(mv){
-            //将视图加载到窗口中（可以加载多个视图）
-            await view.attach_view(mv);
-            //激活窗口（未激活的视图，不会更新显示模型变化）
-            view.active();
-        }
-        //加载右键菜单，(可以自行创建ContextMenuItem，并加载)
-        const menu = new ContextMenu(view);
-        DefaultContextMenuItems.forEach(itm=>{
-            menu.add_item(itm);
-        });  
-        // const bk =new Background();
-        // bk.type = BackgroundType.color;
-        // bk.color = new Color([20,20,20]);  
-        // view.background = bk;
-        // view.light.ambient = new Color([20,20,20]);      
-        // view.light.sunlight.color = new Color([20,20,20])
-        //view.render_mode = RenderMode.hlr;
-        view.selection.add_selection_action(r=>{
-            console.log(r);
-        });
+
 
         window.setTimeout(add_fire,1000);
     }

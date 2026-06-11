@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ContextMenu, DefaultContextMenuItems, DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type IAxis, type UIView } from "../dev";
+import { load_tiny_app } from "@/utils/Loader";
+import {  DefaultUrlResolver, ModelViewType, TinyApp, type IAxis, type UIView } from "../dev";
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
@@ -9,14 +10,14 @@ const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         //初始化
-        app = new TinyApp({recordable:true});
+        
         const div = dom.value as HTMLDivElement;
-        await app.init(div);
+        await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
         //获取默认窗口
         view = app.default_view;
         //创建模型对象
-        let model = app.create_model();
+        let model = app.get_models()[0];
         //加载模型
         await model.load(new DefaultUrlResolver("/rac_basic_sample_project/"));
         //获取模型中的3d视图
@@ -36,12 +37,6 @@ onMounted(async ()=>{
             axis.set_position(dwg.origin);
 
         }
-        //加载右键菜单，(可以自行创建ContextMenuItem，并加载)
-        const menu = new ContextMenu(view);
-        DefaultContextMenuItems.forEach(itm=>{
-            menu.add_item(itm);
-        });        
-        //view.render_mode = RenderMode.hlr;
     }
 });
 onBeforeUnmount(()=>{

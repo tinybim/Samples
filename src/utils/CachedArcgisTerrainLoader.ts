@@ -1,28 +1,23 @@
 import { IndexedDB } from "./IndexedDB";
 import type { TiandituItem } from "./TiandituItem";
-import { ImageLayerType, TiandituLoader, type IImageLoader } from "../dev";
+import { ArcgisTerrainLoader } from "../dev";
 
-export class CachedTiandituLoader implements IImageLoader{
-    private _loader:TiandituLoader;
+export class CachedArcgisTerrainLoader extends ArcgisTerrainLoader{
+        
     private _cache:IndexedDB<TiandituItem>;
-    constructor(keys:string[]){
-        this._loader = new TiandituLoader(keys);
-        this._cache = new IndexedDB("__tiny_view_tianditu__","id");
-
-    }
-
-    get max_level(): number {
-        return 18;
+    constructor(lerc_wasm_url: string){
+        super(lerc_wasm_url);           
+        this._cache = new IndexedDB("__tiny_view_arcgis_terrain__","id");    
     }
     async get_image(level: number, row: number, column: number): Promise<Blob> {
         await this._cache.open();
-        const key = `tianditu_${level}_${row}_${column}`;
+        const key = `arcgis_terrain_${level}_${row}_${column}`;
         const r =await this._cache.get(key);
         if(r){
             return r.blob;
         }
         else{
-            const blob = await this._loader.get_image(level,row,column);
+            const blob = await super.get_image(level,row,column);
             if(blob){
                 const item:TiandituItem = {
                     id:key,
@@ -32,9 +27,10 @@ export class CachedTiandituLoader implements IImageLoader{
                 this._cache.add(item);
             }
             return blob;
-        }       
+        }
     }
-    get type(): ImageLayerType {
-        return ImageLayerType.Tianditu;
+    override get max_level(): number {
+        return 8;
     }
+
 }
