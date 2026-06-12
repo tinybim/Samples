@@ -15,27 +15,17 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
         view = app.default_view;
-        model = app.get_models()[0]; 
-        setTimeout(() => {
-            const bk = new Background();
-            bk.type = BackgroundType.color;
-            bk.color = new Color([0,0,0]);
-            view.background = bk;
-            
-            view.light.ambient = new Color([50,50,50]);
-            view.light.sunlight.color =new Color([0,0,0]);
-        }, 10);
 
+        model = app.get_models()[0]; 
     }
 });
 onBeforeUnmount(()=>{
     app?.dispose();
 });
 const set_material =()=>{
-    const mt = model.create_material("test",new Color([255,255,255,30]),0.5,0.5,MaterialType.Emissive_Bloom);
+    const mt = model.create_material("test",new Color([155,255,155,255]),0.9,0.1,MaterialType.General);    
     console.log("mt",mt);
-    // model.set_material([113,114,115,116,117,118,119,120,71,130,131,132],mt,MaterialScope.element);
-    model.set_material([212,211,105],mt,MaterialScope.element);
+    model.set_material([460],mt,MaterialScope.element);
 }
 
 </script>

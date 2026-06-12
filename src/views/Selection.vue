@@ -12,7 +12,7 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")],div);
         view = app.default_view;
-        model = app.create_model();      
+        model = app.get_models()[0];      
     }
 });
 onBeforeUnmount(()=>{

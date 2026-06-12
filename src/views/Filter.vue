@@ -49,7 +49,7 @@ const category_filter = ()=>{
 }
 
 const type_filter = ()=>{
-    const type = model.types[1];
+    const type = model.types[8];
     if(!type){
         return;
     }

@@ -12,8 +12,7 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")],div);
         view = app.default_view;
-        model = app.get_models()[0];
-        await model.load(new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/"));
+        model = app.get_models()[0];        
         view.selection.selection_mode = SelectionMode.element;        
         setTimeout(() => {
             flow();

@@ -11,7 +11,7 @@
   "compilerOptions": {
     "types": ["sandpack-vue3/global"],
     "target": "es2023",
-    "lib": ["ES2023","DOM"]
+    "lib": ["ES2023","DOM","ES2021.Promise"]
 
   }
 

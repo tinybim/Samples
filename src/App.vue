@@ -16,10 +16,10 @@ const menuItems = [
   { path: '/filter', label: '过滤' },
   { path: '/material', label: '修改材质' },
   { path: '/hlr', label: '渲染模式' },
-  { path: '/light', label: '光照设置' },
-  { path: '/camera', label: '相机设置' },
+  // { path: '/light', label: '光照设置' },
+  // { path: '/camera', label: '相机设置' },
   { path: '/fire', label: '火焰' },
-  { path: '/pbr', label: 'PBR' },
+  // { path: '/pbr', label: 'PBR' },
   { path: '/dispose', label: '销毁场景' },
 ]
 
@@ -36,7 +36,7 @@ const activePath = ref('')
           <path d="M2 17l10 5 10-5" />
           <path d="M2 12l10 5 10-5" />
         </svg>
-        <span class="logo-text">3D Viewer</span>
+        <span class="logo-text">TinyBIM</span>
       </div>
       <a href="https://github.com/tinybim/Samples" target="_blank" rel="noopener noreferrer" class="github-link" title="GitHub">
         <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -65,7 +65,7 @@ const activePath = ref('')
       </main>
 
       <!-- 提示 -->
-      <div class="hint">功能在右键菜单栏</div>
+      <!-- <div class="hint">功能在右键菜单栏</div> -->
     </div>
   </div>
 </template>
@@ -230,7 +230,7 @@ const activePath = ref('')
 .hint {
   position: absolute;
   top: 20px;
-  left: 200px;
+  left: 500px;
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 8px;

@@ -11,6 +11,7 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
         return null;
     }
     const app = new TinyApp({ recordable: false, asset_manager: new AssetManager() });
+    console.log("TinyBIM version:",app.version);
     await app.init(div);
     const uiview = app.default_view;
     uiview.selection.selection_mode = SelectionMode.element;
@@ -31,18 +32,13 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
     menu.add_default();
     menu.install();
 
-    window.setTimeout(() => {
-        const bk = new Background();
-        bk.type = BackgroundType.skybox;
-        bk.skybox = "天空1";
-        uiview.background = bk;
-        uiview.set_env("天空1");
-    }, 1000);
+    const bk = new Background();
+    bk.type = BackgroundType.skybox;
+    bk.skybox = "天空1";
+    uiview.background = bk;
+    uiview.set_env("天空1");
 
-    window.setTimeout(() => {
-        uiview.render_mode = RenderMode.texture; 
-    }, 3000);
-
+    uiview.render_mode = RenderMode.texture;
     return app;
 }
 

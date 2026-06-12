@@ -18,12 +18,14 @@ onBeforeUnmount(()=>{
 });
 const set_hlr =()=>{
     view.render_mode = RenderMode.hlr;
+    view.set_env(null);
 }
 const set_color =()=>{
     view.render_mode = RenderMode.color;
 }
 const set_tex =()=>{
     view.render_mode = RenderMode.texture;
+    view.set_env("天空1");
 }
 </script>
 <template>
