@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import { Background, BackgroundType, Color, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
+import { Background, BackgroundType, Color, DefaultUrlResolver, MaterialScope, MaterialType, ModelViewType, RenderMode, SelectionMode, TinyApp, type IModel, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 
 const dom=ref<HTMLDivElement>();
 
 let app:TinyApp;
-let view:UIView;
+let view:TinyWindow;
 let model:IModel;
 
 onMounted(async ()=>{
     if(!app){        
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-        view = app.default_view;
+        view = app.default_window;
 
         model = app.get_models()[0]; 
     }

@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import { Color,   DefaultUrlResolver, FlowSegment, ModelViewType, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
+import { Color,   DefaultUrlResolver, FlowSegment, ModelViewType, SelectionMode, TinyApp, type IModel, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 let model:IModel;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){      
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")],div);
-        view = app.default_view;
+        win = app.default_window;
         model = app.get_models()[0];        
-        view.selection.selection_mode = SelectionMode.element;        
+        win.selection.selection_mode = SelectionMode.element;        
         setTimeout(() => {
             flow();
         }, 1000);
@@ -33,8 +33,8 @@ const flow=()=>{
     const end = curve.slice(3,6);
     segment = new FlowSegment(start,end,1000,2000,0,500,new Color([255,0,0]));
 
-    view.flow_effects.set(model,e.id,segment);
-    view.zoom_elements(new Map([
+    win.flow_effects.set(model,e.id,segment);
+    win.zoom_elements(new Map([
         [model,[e.id]]
     ]));    
 }
@@ -47,7 +47,7 @@ const restart =()=>{
 
 const clear =()=>{
     const e = model.get_element(4954);
-    view.flow_effects.set(e.model,e.id,null);
+    win.flow_effects.set(e.model,e.id,null);
 }
 </script>
 <template>

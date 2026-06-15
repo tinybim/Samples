@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import { Background, BackgroundType, Color,   DefaultUrlResolver, FireCreateInfo, ModelViewType, RenderMode, SelectionMode, TinyApp, type IFire, type UIView } from '../dev';
+import { Background, BackgroundType, Color,   DefaultUrlResolver, FireCreateInfo, ModelViewType, RenderMode, SelectionMode, TinyApp, type IFire, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom=ref<HTMLDivElement>();
 let fire:IFire;
 onMounted(async ()=>{
@@ -14,7 +14,7 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
-        view = app.default_view;
+        win = app.default_window;
 
 
         window.setTimeout(add_fire,1000);
@@ -28,9 +28,9 @@ async function add_fire() {
     if (fire) {
         return;
     }
-    if (view) {
+    if (win) {
         const p = new Float32Array([8913, 18590, 3000]);
-        fire = await view.add_fire(new FireCreateInfo(p, 1000, 400, 1000, 2, 5, 10, 3000, 1000))
+        fire = await win.add_fire(new FireCreateInfo(p, 1000, 400, 1000, 2, 5, 10, 3000, 1000))
     }
 }
 

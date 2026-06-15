@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import {  BBox, CameraInfo, CameraType,   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from '../dev';
+import {  BBox, CameraInfo, CameraType,   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
@@ -14,7 +14,7 @@ onMounted(async ()=>{
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
         //获取默认窗口
-        view = app.default_view;
+        win = app.default_window;
         //创建模型对象
         let model = app.get_models()[0]
         //加载模型
@@ -23,13 +23,13 @@ onMounted(async ()=>{
         const mv = model.views.find(v=>v.type == ModelViewType.ThreeD);
         if(mv){
             //将视图加载到窗口中（可以加载多个视图）
-            view.attach_view(mv);
+            win.attach_view(mv);
             //激活窗口（未激活的视图，不会更新显示模型变化）
-            view.active();
+            win.active();
         }
         //加载右键菜单，(可以自行创建ContextMenuItem，并加载)  
         //view.render_mode = RenderMode.hlr;
-        view.camera.type = CameraType.Perspective;
+        win.camera.type = CameraType.Perspective;
     }
 });
 onBeforeUnmount(()=>{
@@ -37,10 +37,10 @@ onBeforeUnmount(()=>{
 });
 let rotation_id=0;
 const rotate_x =()=>{
-    const center = BBox.get_center(view.box);
+    const center = BBox.get_center(win.box);
     rotation_id =window.setInterval(()=>{
         
-        view.camera.rotate(0,1/180,center);
+        win.camera.rotate(0,1/180,center);
     },40);
     
 }
@@ -50,16 +50,16 @@ const cancel_rotation=()=>{
 
 let camera_info:CameraInfo;
 const set_camera_info=()=>{
-    camera_info = view.camera.get_info();
+    camera_info = win.camera.get_info();
 }
 const use_camera_info=()=>{
-    view.camera.set_info(camera_info);
+    win.camera.set_info(camera_info);
 }
 const animate_camera_info=()=>{
-    view.camera.animate(camera_info,500);
+    win.camera.animate(camera_info,500);
 }
 const switch_camera=()=>{
-    view.camera.type = view.camera.type == CameraType.Perspective?CameraType.Orthometric:CameraType.Perspective;
+    win.camera.type = win.camera.type == CameraType.Perspective?CameraType.Orthometric:CameraType.Perspective;
 }
 </script>
 <template>

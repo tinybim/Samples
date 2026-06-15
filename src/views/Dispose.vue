@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import {   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from '../dev';
+import {   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
 let app:TinyApp|null;
-let view:UIView|null;
+let view:TinyWindow|null;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
@@ -12,7 +12,7 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app =await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
         //获取默认窗口
-        view = app.default_view;
+        view = app.default_window;
     }
 });
 onBeforeUnmount(()=>{

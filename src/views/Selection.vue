@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import {  DefaultUrlResolver, ModelViewType, SelectionMode, TinyApp, type IModel, type UIView } from '../dev';
+import {  DefaultUrlResolver, ModelViewType, SelectionMode, TinyApp, type IModel, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 let model:IModel;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")],div);
-        view = app.default_view;
+        win = app.default_window;
         model = app.get_models()[0];      
     }
 });
@@ -21,15 +21,15 @@ onBeforeUnmount(()=>{
 const select=()=>{    
     const e = model.get_element(4954);
     if(e){
-        view.selection.select(model,new Uint32Array([e.id]));
+        win.selection.select(model,new Uint32Array([e.id]));
     }
 }
 const select_all=()=>{
     const elements = model.elements;
-    view.selection.select(model,elements);
+    win.selection.select(model,elements);
 }
 const clear=()=>{
-    view.selection.clear();
+    win.selection.clear();
 }
 </script>
 <template>

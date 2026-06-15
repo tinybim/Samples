@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import { DefaultUrlResolver, ModelViewType, Plane, SelectionMode, TinyApp, type UIView } from '../dev';
+import { DefaultUrlResolver, ModelViewType, Plane, SelectionMode, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-        view = app.default_view;        
+        win = app.default_window;        
     }
 });
 onBeforeUnmount(()=>{
@@ -19,26 +19,26 @@ onBeforeUnmount(()=>{
 
 const plan_section=()=>{
     //获取视图范围框的最大点
-    const tp = view.box.slice(3,6);
+    const tp = win.box.slice(3,6);
     tp[2] = tp[2]/3; //z值变缩小，设置剖面原点z值
     const plane = new Plane(tp,new Float32Array([0,0,1]));
-    view.section.set_plane(plane);
+    win.section.set_plane(plane);
 }
 const box_section=()=>{
-    const box = view.box;
+    const box = win.box;
     box[5] = box[5]/3;
-    view.section.set_box(box);
+    win.section.set_box(box);
 }
 const active_section=()=>{
-    view.section.active();
+    win.section.active();
 }
 const deactive_section=()=>{
-    view.section.deactive();
+    win.section.deactive();
 }
 
 const close_section =()=>{
-    view.section.reset();
-    view.section.deactive();
+    win.section.reset();
+    win.section.deactive();
 }
 
 </script>

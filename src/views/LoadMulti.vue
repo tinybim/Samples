@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import {   DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from '../dev';
+import {   DefaultUrlResolver, ModelViewType, TinyApp} from '../dev';
 import { onBeforeUnmount, onMounted } from 'vue';
 
 let app:TinyApp;

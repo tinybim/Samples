@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
 import { load_tiny_app } from '@/utils/Loader';
-import { Color, DefaultUrlResolver, ModelViewType, TinyApp, type UIView } from '../dev';
+import { Color, DefaultUrlResolver, ModelViewType, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
@@ -14,10 +14,10 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
-        view = app.default_view;
+        win = app.default_window;
  
 
-        const light = view.light;
+        const light = win.light;
         if(ambient_color.value){
             const input = ambient_color.value;
             input.value = light.ambient.to_hex_rgb();

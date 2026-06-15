@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { CachedTiandituLoader } from '@/utils/CachedTiandituLoader';
-import { CameraType,   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from '../dev';
+
+import { CameraType,   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { load_tiny_app } from '@/utils/Loader';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
@@ -15,12 +15,12 @@ onMounted(async ()=>{
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
         //获取默认窗口
-        view = app.default_view;       
+        win = app.default_window;       
 
 
 
         window.setTimeout(()=>{
-            const gis = view.gis_manager;           
+            const gis = win.gis_manager;           
             gis.location =chengdu;
             gis.enable_img_layer();
             gis.enable_terrain_layer();
@@ -34,10 +34,10 @@ onBeforeUnmount(()=>{
 const chengdu={lon:104.066,lat:30.66,height:500000};
 const beijing ={lon:116.3912757,lat:39.906217,height:100000};
 const set_chengdu=()=>{
-    view.gis_manager.location = chengdu;
+    win.gis_manager.location = chengdu;
 }
 const set_beijing=()=>{
-    view.gis_manager.location = beijing;
+    win.gis_manager.location = beijing;
 }
 </script>
 <template>

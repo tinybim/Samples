@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 
 import { load_tiny_app } from '@/utils/Loader';
-import {  BBox, CategoryFilter, DefaultUrlResolver, FilteredElementCollector, ModelViewType, ParameterFilter, ParameterValueFilter, RayFilter, SelectionMode, StoreyFilter, TinyApp, TypeFilter, type IModel, type UIView } from '../dev';
+import {  BBox, CategoryFilter, DefaultUrlResolver, FilteredElementCollector, ModelViewType, ParameterFilter, ParameterValueFilter, RayFilter, SelectionMode, StoreyFilter, TinyApp, TypeFilter, type IModel, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 let model:IModel;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
@@ -13,7 +13,7 @@ onMounted(async ()=>{
         //初始化        
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div); 
-        view = app.default_view;
+        win = app.default_window;
         model = app.get_models()[0];
     }
 });
@@ -25,14 +25,14 @@ const storye_filter=()=>{
     if(!storey){
         return;
     }
-    view.show_all();
+    win.show_all();
     const filter = new StoreyFilter(model,storey.id);
     const collector =new FilteredElementCollector(model);
     collector.pass(filter);
     const ids = new Uint32Array(collector.get_elements());
     const map = new Map<IModel, Uint32Array | number[]>();
     map.set(model,ids)
-    view.isolate(map);
+    win.isolate(map);
 }
 const category_filter = ()=>{
     const category = model.categories.find(c=>c.name=="墙");
@@ -45,7 +45,7 @@ const category_filter = ()=>{
     const map = new Map<IModel, Uint32Array | number[]>([
         [model,ids]
     ]);
-    view.isolate(map);
+    win.isolate(map);
 }
 
 const type_filter = ()=>{
@@ -59,13 +59,13 @@ const type_filter = ()=>{
     const map = new Map<IModel,Uint32Array|number[]>([
         [model,ids]
     ]);
-    view.show_all();
-    view.isolate(map);
+    win.show_all();
+    win.isolate(map);
 }
 const ray_filter = ()=>{
-    const box = view.box;
+    const box = win.box;
     const center = new Float32Array([2635,-1715,9000])
-    const ray =new RayFilter(center,new Float32Array([0,0,-1]),[model],view);
+    const ray =new RayFilter(center,new Float32Array([0,0,-1]),[model],win);
     ray.pass();
     const r = ray.get_results();
     const map = new Map<IModel,number[]>();
@@ -77,8 +77,8 @@ const ray_filter = ()=>{
         }
         ids.push(e.element);
     });
-    view.show_all();
-    view.isolate(map);
+    win.show_all();
+    win.isolate(map);
 }
 const parameter_filter = async ()=>{
     const defs = await model.get_property_defs();
@@ -92,8 +92,8 @@ const parameter_filter = async ()=>{
     const map:Map<IModel,Uint32Array>=new Map([
         [model,ids]
     ]);
-    view.show_all();
-    view.isolate(map);
+    win.show_all();
+    win.isolate(map);
 }
 const parameter_value_filter = async ()=>{
     const defs = await model.get_property_defs();
@@ -107,8 +107,8 @@ const parameter_value_filter = async ()=>{
     const map:Map<IModel,Uint32Array>=new Map([
         [model,ids]
     ]);
-    view.show_all();
-    view.isolate(map);
+    win.show_all();
+    win.isolate(map);
 }
 
 </script>

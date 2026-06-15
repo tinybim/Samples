@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { CompositeElementUpdater,   DefaultUrlResolver, ElementAnimation, LinearElementUpdater, ModelViewType, RenderMode, RotateElementUpdater, TinyApp, type IModel, type UIView } from '../dev';
+import { CompositeElementUpdater,   DefaultUrlResolver, ElementAnimation, LinearElementUpdater, ModelViewType, RenderMode, RotateElementUpdater, TinyApp, type IModel, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 import {vec3} from 'gl-matrix';
 import { load_tiny_app } from '@/utils/Loader';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 let model:IModel;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){        
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-        view = app.default_view;
+        win = app.default_window;
         model = app.get_models()[0];
         window.setTimeout(()=>{
             set_motion();
@@ -34,7 +34,7 @@ const set_motion=()=>{
 
     const animation = new ElementAnimation(id,model,c);
     animation.loop = true;
-    view.animation_manager.add(animation);
+    win.animation_manager.add(animation);
     animation.start();
 }
 

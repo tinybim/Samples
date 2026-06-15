@@ -1,31 +1,31 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import {   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type UIView } from '../dev';
+import {   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-        view = app.default_view;  
+        win = app.default_window;  
     }
 });
 onBeforeUnmount(()=>{
     app?.dispose();
 });
 const set_hlr =()=>{
-    view.render_mode = RenderMode.hlr;
-    view.set_env(null);
+    win.render_mode = RenderMode.hlr;
+    win.set_env(null);
 }
 const set_color =()=>{
-    view.render_mode = RenderMode.color;
+    win.render_mode = RenderMode.color;
 }
 const set_tex =()=>{
-    view.render_mode = RenderMode.texture;
-    view.set_env("天空1");
+    win.render_mode = RenderMode.texture;
+    win.set_env("天空1");
 }
 </script>
 <template>

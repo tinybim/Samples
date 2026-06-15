@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { load_tiny_app } from '@/utils/Loader';
-import { DefaultUrlResolver, ModelViewType, Plane, TinyApp, type UIView } from '../dev';
+import { DefaultUrlResolver, ModelViewType, Plane, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 let app:TinyApp;
-let view:UIView;
+let win:TinyWindow;
 const dom = ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
@@ -14,13 +14,13 @@ onMounted(async ()=>{
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
 
         //获取默认窗口
-        view = app.default_view;
+        win = app.default_window;
         const model = app.get_models()[0]; 
 
         const dwg = model.views.find(v=>v.type == ModelViewType.Floor);
         if(dwg){
-            await view.attach_view(dwg);
-            view.section.set_plane(new Plane(dwg.origin,dwg.normal));
+            await win.attach_view(dwg);
+            win.section.set_plane(new Plane(dwg.origin,dwg.normal));
         }
     }
 });
