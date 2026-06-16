@@ -4,7 +4,7 @@ import { CachedTiandituLoader } from "./CachedTiandituLoader";
 import { CachedArcgisTerrainLoader } from "./CachedArcgisTerrainLoader";
 
 //测试天地图Key,请求次数有限，请自行申请
-let keys: string[] = ["26eb0c7b03694c6fe26d61fb85ba12fe"];
+const keys: string[] = ["26eb0c7b03694c6fe26d61fb85ba12fe"];
 
 export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElement, store: IStore = null) {
 
@@ -16,7 +16,7 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
     if (!loaders || loaders.length == 0) {
         return null;
     }
-    const app = new TinyApp({ recordable: false, asset_manager: new AssetManager() });
+    const app = new TinyApp({ recordable: true, asset_manager: new AssetManager() });
     console.log("TinyBIM version:",app.version);
     await app.init(div);
     const win = app.default_window;
