@@ -19,6 +19,17 @@ export default defineConfig({
       ],
     }),
   ],
+  // build: {
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks: {
+  //         // 强制拆分两个 chunk
+  //         'webgpu-checker': ['./src/WebGPUChecker.ts'],
+  //         'main': ['./src/main.ts'],
+  //       },
+  //     },
+  //   },
+  // },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

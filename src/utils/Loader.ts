@@ -6,13 +6,28 @@ import { CachedArcgisTerrainLoader } from "./CachedArcgisTerrainLoader";
 //测试天地图Key,请求次数有限，请自行申请
 const keys: string[] = ["26eb0c7b03694c6fe26d61fb85ba12fe"];
 
+const notsupport_url = "https://tinybim.cn/notsupport";
 export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElement, store: IStore = null) {
-
-    if(!(navigator as any)?.gpu){
-        window.location.href ="https://tinybim.cn/notsupport";
+    try {
+        if (!navigator.gpu) {
+            window.location.href = notsupport_url;
+            return;
+        }
+        const dp = await navigator.gpu.requestAdapter();
+        if (!dp) {
+            window.location.href = notsupport_url;
+            return;
+        }
+        const dv = await dp.requestDevice();
+        if (!dv) {
+            window.location.href = notsupport_url;
+            return;
+        }
+    } catch {
+        window.location.href = notsupport_url;
         return;
     }
-
+    
     if (!loaders || loaders.length == 0) {
         return null;
     }

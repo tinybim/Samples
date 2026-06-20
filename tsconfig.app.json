@@ -9,6 +9,8 @@
       "@/*": ["./src/*"]
     },
     "target": "es2023",
-    "lib": ["ES2023","DOM","ES2021.Promise"]
+    "lib": ["ES2023","DOM","ES2021.Promise"],
+    "types": [ "@webgpu/types"]
   }
+
 }

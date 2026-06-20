@@ -8,11 +8,6 @@
       "path": "./tsconfig.app.json"
     }
   ],
-  "compilerOptions": {
-    "types": ["sandpack-vue3/global"],
-    "target": "es2023",
-    "lib": ["ES2023","DOM","ES2021.Promise"]
 
-  }
 
 }
