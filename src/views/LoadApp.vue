@@ -9,7 +9,7 @@ const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         const div = dom.value as HTMLDivElement;
-        app = await load_tiny_app([new DefaultUrlResolver("/test/rme_basic_sample_project/")],div);
+        app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
         view = app.default_window;
         // view.edge_width=0;
         
