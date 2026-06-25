@@ -32,3 +32,4 @@ lib
 *.tsbuildinfo
 publish.mjs
 todo.md
+test

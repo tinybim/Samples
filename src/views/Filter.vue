@@ -49,10 +49,8 @@ const category_filter = ()=>{
 }
 
 const type_filter = ()=>{
-    const type = model.types[8];
-    if(!type){
-        return;
-    }
+    const type = 37;
+    
     const filter = new TypeFilter(model,type);
     const collector = new FilteredElementCollector(model);
     const ids = new Uint32Array(collector.pass(filter).get_elements());
