@@ -22,32 +22,48 @@ onMounted(async ()=>{
 onBeforeUnmount(()=>{
     app?.dispose();
 });
-let segment:FlowSegment;
+let segments:FlowSegment[]=[];
 const flow=()=>{
-    const e = model.get_element(4954);
-    const curve = e.location_curve;
-    if(!curve){
-        return;
+    const ids = [4954,4930,4953];
+    const color = new Color([64, 164, 223]);
+    for(let i=0;i<ids.length;i++){
+        const e = model.get_element(ids[i]);
+        const curve = e.location_curve;
+        if(!curve){
+            return;
+        }
+        const start = curve.slice(0,3);
+        const end = curve.slice(3,6);
+        if(i===0){
+            segments[i] = new FlowSegment(start,end,1000,2000,0,500,color);
+        }
+        else{
+            segments[i] = new FlowSegment(end,start,1000,2000,0,500,color);
+        }
+        win.flow_effects.set(model,e.id,segments[i]);
     }
-    const start = curve.slice(0,3);
-    const end = curve.slice(3,6);
-    segment = new FlowSegment(start,end,1000,2000,0,500,new Color([255,0,0]));
 
-    win.flow_effects.set(model,e.id,segment);
     win.zoom_elements(new Map([
-        [model,[e.id]]
+        [model,ids]
     ]));    
 }
 const pause = ()=>{
-    segment.pause();
+    segments.forEach(s=>{
+        s.pause();
+    });
 }
 const restart =()=>{
-    segment.restart();
+    segments.forEach(s=>{
+        s.restart();
+    });
 }
 
 const clear =()=>{
-    const e = model.get_element(4954);
-    win.flow_effects.set(e.model,e.id,null);
+    const ids = [4954,4930,4953];
+    ids.forEach(id => {
+        // const e = model.get_element(id);
+        win.flow_effects.set(model,id,null);
+    });
 }
 </script>
 <template>
