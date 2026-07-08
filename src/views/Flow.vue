@@ -7,7 +7,9 @@ let app:TinyApp;
 let win:TinyWindow;
 let model:IModel;
 const dom=ref<HTMLDivElement>();
+
 onMounted(async ()=>{
+
     if(!app){      
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")],div);
@@ -35,10 +37,10 @@ const flow=()=>{
         const start = curve.slice(0,3);
         const end = curve.slice(3,6);
         if(i===0){
-            segments[i] = new FlowSegment(start,end,1000,2000,0,500,color);
+            segments[i] = new FlowSegment(start,end,3000,2000,0,500,color);
         }
         else{
-            segments[i] = new FlowSegment(end,start,1000,2000,0,500,color);
+            segments[i] = new FlowSegment(end,start,3000,2000,0,500,color);
         }
         win.flow_effects.set(model,e.id,segments[i]);
     }
@@ -59,11 +61,14 @@ const restart =()=>{
 }
 
 const clear =()=>{
-    const ids = [4954,4930,4953];
-    ids.forEach(id => {
-        // const e = model.get_element(id);
-        win.flow_effects.set(model,id,null);
-    });
+    //方式一
+    // const ids = [4954,4930,4953];
+    // ids.forEach(id => {
+    //     // const e = model.get_element(id);
+    //     win.flow_effects.set(model,id,null);
+    // });
+    //方式二
+    win.flow_effects.clear();
 }
 </script>
 <template>
@@ -75,3 +80,8 @@ const clear =()=>{
         <button @click="clear">清空</button>
     </div>
 </template>
+<style scoped>
+button{
+    font-size: 14px;
+}
+</style>
