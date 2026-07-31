@@ -30,6 +30,7 @@ async function add_fire() {
     }
     if (win) {
         const p = new Float32Array([8913, 18590, 3000]);
+        // fire = await win.add_fire(new FireCreateInfo(p, 1000, 400, 1000, 2, 5, 10, 3, 1));
         fire = await win.add_fire(new FireCreateInfo(p, 1000, 400, 1000, 2, 5, 10, 3000, 1000))
     }
 }
