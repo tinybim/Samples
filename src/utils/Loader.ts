@@ -43,7 +43,7 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
     for (let i = 0; i < len; i++) {
         tasks.push(load_model(app, loaders[i], store));
     }
-    await Promise.any(tasks);
+    await Promise.all(tasks);
     const lerc_url = "/lerc-wasm.wasm";
     const gis_manager = win.gis_manager;
     gis_manager.set_terrain_loader(new CachedArcgisTerrainLoader(lerc_url));

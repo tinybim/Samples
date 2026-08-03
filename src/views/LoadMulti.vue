@@ -10,8 +10,9 @@ onMounted(async ()=>{
         const div = document.getElementById("app_id") as HTMLDivElement;
         app = await load_tiny_app([
             new DefaultUrlResolver("/Snowdon Towers Sample Architectural/"),
-            new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")
+            new DefaultUrlResolver("/Snowdon Towers Sample Plumbing/")           
         ],div);
+        app.default_window.shadow = true;
     }
 });
 onBeforeUnmount(()=>{
