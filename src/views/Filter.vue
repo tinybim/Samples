@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 
-import { load_tiny_app } from '@/utils/Loader';
+import { hide_plant, load_tiny_app } from '@/utils/Loader';
 import {  BBox, CategoryFilter, DefaultUrlResolver, FilteredElementCollector, ModelViewType, ParameterFilter, ParameterValueFilter, RayFilter, SelectionMode, StoreyFilter, TinyApp, TypeFilter, type IModel, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
@@ -13,6 +13,7 @@ onMounted(async ()=>{
         //初始化        
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div); 
+         hide_plant(app);
         win = app.default_window;
         model = app.get_models()[0];
     }

@@ -3,7 +3,7 @@
 import {   DefaultUrlResolver, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import type { ILabel } from 'tinybim';
-import { load_tiny_app } from '@/utils/Loader';
+import { hide_plant, load_tiny_app } from '@/utils/Loader';
 
 let app:TinyApp;
 let win:TinyWindow;
@@ -13,7 +13,9 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
         win =app.default_window;
+        hide_plant(app);
         window.setTimeout(add_label,3000);
+        
     }
 });
 onBeforeUnmount(()=>{

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { hide_plant, load_tiny_app } from '@/utils/Loader';
-import {  DefaultUrlResolver,TinyApp } from '../dev';
+import { load_tiny_app } from '@/utils/Loader';
+import {  DefaultUrlResolver,   TinyApp } from '../dev';
 import { onBeforeUnmount, onMounted,  ref } from 'vue';
 
 
@@ -10,11 +10,9 @@ const dom=ref<HTMLDivElement>();
 onMounted(async ()=>{
     if(!app){
         const div = dom.value as HTMLDivElement;
-        app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-        const win = app.default_window;
-        win.shadow = true;
-        
-        hide_plant(app);
+        app = await load_tiny_app([new DefaultUrlResolver("/小别墅/")],div);
+        app.default_window.shadow = true;
+        app.default_window.cull_back =false;
     }
 });
 onBeforeUnmount(()=>{

@@ -1,4 +1,4 @@
-import { Background, BackgroundType, CategoryFilter, FileType, FilteredElementCollector, ModelViewType, OrFilter, RenderMode, SelectionMode, TbContextMenuUI, TinyApp, type IFileResolver, type IFilter,  type IStore, type IView } from "@/dev";
+import { Background, BackgroundType, CategoryFilter, FileType, FilteredElementCollector, ModelViewType, OrFilter, RenderMode, SelectionMode, TbContextMenuUI, TinyApp, WindowEventKind, type IFileResolver, type IFilter,  type IModel,  type IStore, type IView } from "@/dev";
 import { AssetManager } from "./AssetManager";
 import { CachedTiandituLoader } from "./CachedTiandituLoader";
 import { CachedArcgisTerrainLoader } from "./CachedArcgisTerrainLoader";
@@ -60,6 +60,12 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
     win.set_env("天空1");
 
     win.render_mode = RenderMode.texture;
+    win.cull_back =true;
+
+    win.event_bus.subscribe(WindowEventKind.Selected,r=>{
+        console.log("ssss",r);
+    }) 
+
     return app;
 }
 
@@ -116,4 +122,18 @@ async function load_model(app: TinyApp, loader: IFileResolver, store: IStore = n
             await wnd.attach_view(mv);
         }
     }
+}
+
+//隐藏rac_basic_sample_project 中的植物， 植物法线有问题，导致渲染异常
+export function hide_plant(app:TinyApp){
+        
+        const model = app.get_models()[0];
+        const filter =new CategoryFilter(model,8);
+        const collector = new FilteredElementCollector(model);
+        const ids = new Uint32Array(collector.pass(filter).get_elements());
+        const map = new Map<IModel, Uint32Array | number[]>([
+            [model,ids]
+        ]);
+        const win = app.default_window;
+        win.hide(map);
 }

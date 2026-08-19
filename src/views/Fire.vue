@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { load_tiny_app } from '@/utils/Loader';
+import { hide_plant, load_tiny_app } from '@/utils/Loader';
 import { Background, BackgroundType, Color,   DefaultUrlResolver, FireCreateInfo, ModelViewType, RenderMode, SelectionMode, TinyApp, type IFire, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
@@ -13,7 +13,7 @@ onMounted(async ()=>{
 
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-
+ hide_plant(app);
         win = app.default_window;
 
 

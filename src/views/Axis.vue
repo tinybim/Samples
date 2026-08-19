@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { load_tiny_app } from "@/utils/Loader";
+import { hide_plant, load_tiny_app } from "@/utils/Loader";
 import {  DefaultUrlResolver, ModelViewType, TinyApp, type IAxis, type TinyWindow } from "../dev";
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 
@@ -11,6 +11,7 @@ onMounted(async ()=>{
     if(!app){       
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
+        hide_plant(app);
         win = app.default_window;
         let model = app.get_models()[0];
         const dwg = model.views.find(v=>v.type == ModelViewType.Floor);

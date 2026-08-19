@@ -2,7 +2,7 @@
 
 import { CameraType,   DefaultUrlResolver, ModelViewType, RenderMode, TinyApp, type TinyWindow } from '../dev';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { load_tiny_app } from '@/utils/Loader';
+import { hide_plant, load_tiny_app } from '@/utils/Loader';
 
 let app:TinyApp;
 let win:TinyWindow;
@@ -13,7 +13,7 @@ onMounted(async ()=>{
   
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/rac_basic_sample_project/")],div);
-
+ hide_plant(app);
         //获取默认窗口
         win = app.default_window;       
 

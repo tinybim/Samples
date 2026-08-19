@@ -1,6 +1,7 @@
 
 
-export * from "tinybim"
+export * from "tinybim" 
+
 
 //debug
 // export * from "./lib"

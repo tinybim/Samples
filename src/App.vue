@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import path from 'path';
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 
@@ -21,6 +22,8 @@ const menuItems = [
   { path: '/fire', label: '火焰' },
   // { path: '/pbr', label: 'PBR' },
   { path: '/dispose', label: '销毁场景' },
+  {path:'/viewpoint',label:"视点"},
+   {path:'/skp',label:"SKP文件"},
 ]
 
 const activePath = ref('')
