@@ -55,9 +55,9 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
 
     const bk = new Background();
     bk.type = BackgroundType.skybox;
-    bk.skybox = "天空1";
+    bk.skybox = "天空3";
     win.background = bk;
-    win.set_env("天空1");
+    win.set_env("天空3");
 
     win.render_mode = RenderMode.texture;
     win.cull_back =true;
