@@ -26,7 +26,7 @@ onBeforeUnmount(()=>{
 const set_material =()=>{
     const mt = model.create_material("test",new Color([255, 255, 255,255]),1,0.0,MaterialType.General);    
     console.log("mt",mt);
-    model.set_material([140,461,245],mt,MaterialScope.element);
+    model.set_material([140,461,245,267],mt,MaterialScope.element);
 }
 
 </script>
