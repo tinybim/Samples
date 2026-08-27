@@ -68,7 +68,7 @@ const activePath = ref('')
       </main>
 
       <!-- 提示 -->
-      <!-- <div class="hint">功能在右键菜单栏</div> -->
+      <div class="hint">功能在右键菜单栏</div>
     </div>
   </div>
 </template>
@@ -233,7 +233,7 @@ const activePath = ref('')
 .hint {
   position: absolute;
   top: 20px;
-  left: 500px;
+  right: 100px;
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 8px;
