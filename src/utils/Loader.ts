@@ -1,4 +1,4 @@
-import { Background, BackgroundType, CategoryFilter, FileType, FilteredElementCollector, ModelViewType, OrFilter, RenderMode, SelectionMode, TbContextMenuUI, TinyApp, WindowEventKind, type IFileResolver, type IFilter,  type IModel,  type IStore, type IView } from "@/dev";
+import { Background, BackgroundType, CameraType, CategoryFilter, FileType, FilteredElementCollector, ModelViewType, OrFilter, RenderMode, SelectionMode, TbContextMenuUI, TinyApp, WindowEventKind, type IFileResolver, type IFilter,  type IModel,  type IStore, type IView } from "@/dev";
 import { AssetManager } from "./AssetManager";
 import { CachedTiandituLoader } from "./CachedTiandituLoader";
 import { CachedArcgisTerrainLoader } from "./CachedArcgisTerrainLoader";
@@ -65,7 +65,7 @@ export async function load_tiny_app(loaders: IFileResolver[], div: HTMLDivElemen
     win.event_bus.subscribe(WindowEventKind.Selected,r=>{
         console.log("ssss",r);
     }) 
-
+    // win.camera.type = CameraType.;
     return app;
 }
 
