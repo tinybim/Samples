@@ -25,7 +25,8 @@ const router = createRouter({
     _create_route('motion',`Motion`),
     _create_route('viewpoint',"ViewPoint"),
     _create_route('skp',"SKP"),
-    _create_route('roaming',"Roaming")
+    _create_route('roaming',"Roaming"),
+    _create_route('step',"Step")
   ],
 })
 

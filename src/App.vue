@@ -24,7 +24,8 @@ const menuItems = [
   { path: '/dispose', label: '销毁场景' },
   {path:'/viewpoint',label:"视点"},
    {path:'/skp',label:"SKP文件"},
-   {path:'/roaming',label:"漫游"}
+   {path:'/roaming',label:"漫游"},
+   {path:'/step',label:"STEP"}
 ]
 
 const activePath = ref('')
