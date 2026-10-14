@@ -12,6 +12,7 @@ onMounted(async ()=>{
         const div = dom.value as HTMLDivElement;
         app = await load_tiny_app([new DefaultUrlResolver("/小别墅/")],div);
         app.default_window.shadow = true;
+        app.default_window.ao = {enabled:true, radius:5000,intensity:3}
         app.default_window.cull_back =false;
     }
 });
