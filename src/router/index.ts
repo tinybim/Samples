@@ -26,7 +26,8 @@ const router = createRouter({
     _create_route('viewpoint',"ViewPoint"),
     _create_route('skp',"SKP"),
     _create_route('roaming',"Roaming"),
-    _create_route('step',"Step")
+    _create_route('step',"Step"),
+    // _create_route('gauss',"Gauss")
   ],
 })
 

@@ -25,7 +25,8 @@ const menuItems = [
   {path:'/viewpoint',label:"视点"},
    {path:'/skp',label:"SKP文件"},
    {path:'/roaming',label:"漫游"},
-   {path:'/step',label:"STEP"}
+   {path:'/step',label:"STEP"},
+  //  {path:'/gauss',label:"Gauss"}
 ]
 
 const activePath = ref('')
