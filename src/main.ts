@@ -15,6 +15,7 @@ DefaultUrlResolver.prototype.get_file = async function(name: string): Promise<Ar
     return await response.arrayBuffer();
 }
 
+
 const app = createApp(App)
 
 app.use(router)

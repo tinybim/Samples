@@ -26,7 +26,7 @@ const menuItems = [
    {path:'/skp',label:"SKP文件"},
    {path:'/roaming',label:"漫游"},
    {path:'/step',label:"STEP"},
-  //  {path:'/gauss',label:"Gauss"}
+   {path:'/gauss',label:"高斯泼溅"}
 ]
 
 const activePath = ref('')
